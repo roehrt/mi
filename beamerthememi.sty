@@ -1,0 +1,126 @@
+% Mi theme
+% https://github.com/roehrt/mi
+
+\mode<presentation>
+
+% ===
+% Requirements
+% === 
+\RequirePackage{scrextend}
+\RequirePackage{lmodern}
+\RequirePackage[normalem]{ulem}
+
+% ===
+% Color settings
+% === 
+\setbeamercolor*{title page header}{fg=black}
+\setbeamercolor*{author}{fg=black}
+\setbeamercolor*{date}{fg=black}
+\setbeamercolor*{frametitle}{fg=black}
+\setbeamercolor*{normal text}{fg=black}
+\setbeamercolor*{background canvas}{bg=white}
+\setbeamercolor*{item}{fg=black!60}
+
+% ===
+% Font settings
+% ===
+\changefontsizes{14pt}
+\usefonttheme{serif}
+\setbeamerfont{title page title}{size=\Huge}
+\setbeamerfont{title page subtitle}{size=\Large}
+\setbeamerfont{frametitle}{size=\huge}
+\setbeamerfont{framesubtitle}{size=\normalsize}
+\setbeamerfont{caption}{size=\footnotesize}
+
+% ===
+% Misc
+% === 
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{navigation symbols}{\insertslidenavigationsymbol}
+
+% ===
+% Macros
+% === 
+\newcommand{\micenter}[1]{
+    \centering
+    \hspace{0pt}
+    \vfill
+
+    #1
+
+    \vfill
+    \hspace{0pt}
+}
+\newcommand{\mititle}[1]{{\huge#1\leavevmode\par}}
+\newcommand{\milarge}[1]{{\Large#1\leavevmode\par}}
+\newcommand{\mifullimage}[2][\relax]{
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{#2}
+        \ifx\relax#1\else\caption{#1}\fi
+    \end{figure}
+}
+\newcommand{\mifullwidthimage}[2][\relax]{
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{#2}
+        \ifx\relax#1\else\caption{#1}\fi
+    \end{figure}
+}
+\newcommand{\mifullheightimage}[2][\relax]{
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[height=0.8\textheight,keepaspectratio]{#2}
+        \ifx\relax#1\else\caption{#1}\fi
+    \end{figure}
+}
+\newcommand{\miimageframe}[2][\relax]{
+    \begin{frame}
+        \mifullimage[#1]{#2}
+    \end{frame}
+}
+\newcommand{\mitextframe}[1]{
+    \begin{miframe}
+        \mititle{#1}
+    \end{miframe}
+}
+\newcommand{\misection}[2][\relax]{
+    \ifx\relax#1\section{#2}\else\section{#1}\fi
+    \begin{miframe}
+        \mititle{\uline{\arabic{section}.~#2}}%
+    \end{miframe}
+}
+
+% ===
+% Frame templates
+% ===
+\newenvironment{miframe}{
+    \begin{frame}
+        \centering
+        \hspace{0pt}
+        \vfill
+}{
+        \vfill
+        \hspace{0pt}
+    \end{frame}
+}
+
+\BeforeBeginEnvironment{frame}{\centering}
+
+\defbeamertemplate*{title page}{mi}[1][]
+{ 
+    \micenter{
+        {\linespread{0.8}\usebeamerfont{title page title}\usebeamercolor[fg]{title page}\inserttitle\leavevmode\par}
+        {\usebeamerfont{title page subtitle}\usebeamercolor[fg]{title page}\insertsubtitle\leavevmode\par}
+    }
+}
+
+\defbeamertemplate*{frametitle}{mi}[1][]
+{ 
+    \centering
+    \hspace{0pt}
+    \vskip1ex
+    {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\leavevmode\par}
+}
+
+\mode<all>

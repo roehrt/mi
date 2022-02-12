@@ -1,0 +1,96 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\title{$\nexists$ largest prime number.}
+\subtitle{.. and we will prove that now}
+
+\usetheme{mi}
+
+% ===
+% Tikz stuff
+% ===
+\usetikzlibrary{arrows.meta}
+\tikzstyle{selected edge}=[draw,line width=8pt,-,red!40]
+\tikzstyle{vertex}=[circle,fill=black!25,minimum size=28pt,inner sep=0pt,font=\sffamily]
+\tikzstyle{selected vertex} = [vertex, fill=red!24]
+
+\newcommand{\setupnodes}{
+    \begin{scope}[every node/.style={vertex}]
+        \node (a) at (0,8) {a};
+        \node (b) at (9,9) {b};
+        \node (c) at (8,6) {c};
+        \node (d) at (6,6) {d};
+        \node (e) at (4,5) {e};
+        \node (f) at (0,4) {f};
+        \node (g) at (9,3) {g};
+    \end{scope}
+}
+\newcommand{\setupedges}{
+    \begin{scope}[-Stealth]
+        \draw (a) to (b);
+        \draw (a) to (d);
+        \draw (a) to (e);
+        \draw (a) to (f);
+        \draw (b) to (c);
+        \draw (b) to (d);
+        \draw (b) to (g);
+        \draw (c) to (d);
+        \draw (d) to (e);
+        \draw (d) to (g);
+        \draw (e) to (f);
+    \end{scope}
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% Automatic line breaks of underlined is incredibly hard 
+\misection[The neural net approach]{The neural\\net approach}
+
+\miimageframe[\url{https://xkcd.com/2173/}]{figures/trained_a_neural_net.png}
+
+\misection{Proof by contradiction}
+
+\mitextframe{Imagine you have a list of all primes.}
+
+\mitextframe{\textit{Got it?}}
+
+\mitextframe{No!}
+
+\mitextframe{Let's have a look at cute graphs instead!}
+
+\begin{miframe}
+    \begin{tikzpicture}[auto]
+        \setupnodes
+
+        \only<1>
+        \node[selected vertex] (a) at (0,8) {a};
+
+        \only<2>{
+            \draw[selected edge] (a) to (b);
+            \draw[selected edge] (a) to (e);
+            \draw[selected edge] (a) to (f);
+            \draw[selected edge] (a) to (d);
+        }
+
+        \setupedges
+    \end{tikzpicture}
+\end{miframe}
+
+\begin{miframe}
+    \frametitle{Key takeaways}
+    \begin{enumerate}
+        \item Graphs are great.
+        \item Prime numbers are great.
+        \item Automatic underlining of a section title is incredibly nasty.
+    \end{enumerate}
+\end{miframe}
+
+\end{document}
