@@ -27,7 +27,7 @@ It follows the idea of absolute minimalism to avoid distraction and the “one i
 | `\micenter{content}`                    | Vertically centering and reduce frame margins           |
 | `\misection[name in toc]{section name}` | Creates an underlined section slide                     |
 
-| shorthand                               | translation                                          |
+| shorthand                               | expanded form                                        |
 |-----------------------------------------|------------------------------------------------------|
 | `\begin{miframe} content \end{miframe}` | `\begin{frame}\micenter{content}\end{frame}`         |
 | `\mitextframe{text}`                    | `\begin{miframe}\mititle{content}\end{miframe}`      |
